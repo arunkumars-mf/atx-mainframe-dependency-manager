@@ -87,6 +87,30 @@ dependencies = dm.get_dependencies("PAYROLL")
 stats = dm.get_statistics()
 ```
 
+## Sample Prompts
+
+Once the MCP server is configured, you can use these prompts for mainframe modernization:
+
+### Migration Planning
+- "Which components have the fewest dependencies and could be migrated first?"
+- "Show me standalone programs that could be extracted as microservices"
+- "Find components that are only used by a single program"
+
+### Data Structure Analysis
+- "What are the input files and their copybooks layout for this JCL job?"
+- "Which copybooks define data structures that could become API contracts?"
+- "Show me all the data dependencies for the CUSTOMER-PROCESS program"
+
+### Risk Assessment
+- "Identify high-risk components with many dependents that need careful migration planning"
+- "Which programs have the most complex dependency chains?"
+- "Find circular dependencies that need refactoring before cloud migration"
+
+### Modernization Strategy
+- "Group related components that could form a microservice boundary"
+- "Show me batch JCL jobs that could be converted to serverless functions"
+- "What would be impacted if I modernize the CUSTOMER-MASTER program?"
+
 ## Usage Examples
 
 ### Basic Analysis
