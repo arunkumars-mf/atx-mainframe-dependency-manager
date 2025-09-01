@@ -34,6 +34,10 @@ ATX Analysis → dependencies.json + codebase → ATX Mainframe Dependency Manag
 
 ## Installation
 
+### For MCP Server Usage
+No installation needed! The MCP configuration with `uvx` will automatically download and run the package.
+
+### For Python Library Usage
 ```bash
 pip install atx-mainframe-dependency-manager
 ```
@@ -55,7 +59,8 @@ export ATX_MF_CODE_BASE="/path/to/mainframe/codebase"
 {
   "mcpServers": {
     "atx-mainframe-dependency-manager": {
-      "command": "atx-mainframe-dependency-manager",
+      "command": "uvx",
+      "args": ["atx-mainframe-dependency-manager"],
       "env": {
         "ATX_MF_DEPENDENCIES_FILE": "/path/to/atx-dependencies.json",
         "ATX_MF_CODE_BASE": "/path/to/mainframe/codebase"
