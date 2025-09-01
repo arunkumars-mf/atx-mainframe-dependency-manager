@@ -112,17 +112,20 @@ orphans = dm.get_orphaned_components()
 
 # Search by file path
 component = dm.find_component_by_path("/cobol/PAYROLL.cob")
+
+# Get comprehensive statistics
+stats = dm.get_statistics()
+print(f"Total components: {stats['total_components']}")
 ```
 
-### Advanced Operations
+### Source Code Access
 
 ```python
-# Add new components and dependencies
-dm.add_component("NEWPROG", "COB", "/path/to/NEWPROG.cob")
-dm.add_dependency("NEWPROG", "EMPLOYEE", "COPY")
+# Read source code content
+source_code = dm.read_component_source("PAYROLL")
 
-# Save updated dependencies
-dm.save_dependencies("/path/to/updated-dependencies.json")
+# Get source file information
+source_info = dm.get_component_source_info("PAYROLL")
 
 # Validate source code access
 validation_results = dm.validate_source_access()
@@ -154,9 +157,11 @@ validation_results = dm.validate_source_access()
 
 ### Management Tools
 - `load_dependencies` - Load dependency data from ATX JSON file
-- `add_component` - Add new components
-- `add_dependency` - Add new dependency relationships  
-- `save_dependencies` - Save current state to JSON file
+- `add_component` - Add new components *(experimental)*
+- `add_dependency` - Add new dependency relationships *(experimental)*
+- `save_dependencies` - Save current state to JSON file *(experimental)*
+
+**Note**: Management tools marked as *experimental* are available but not fully tested. Use with caution in production environments.
 
 ## ATX Dependencies JSON Format
 
