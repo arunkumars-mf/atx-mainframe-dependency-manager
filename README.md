@@ -37,7 +37,9 @@ ATX Analysis Step → dependencies.json + codebase → ATX Mainframe Dependency 
 pip install atx-mainframe-dependency-manager
 ```
 
-## Configuration
+## Usage
+
+### As MCP Server
 
 Set these environment variables to point to your ATX analysis outputs:
 
@@ -47,6 +49,64 @@ Set these environment variables to point to your ATX analysis outputs:
 ```bash
 export ATX_MF_DEPENDENCIES_FILE="/path/to/atx-dependencies.json"
 export ATX_MF_CODE_BASE="/path/to/mainframe/codebase"
+```
+
+### As Python Library
+
+You can also use this package as a Python library in your own applications:
+
+```python
+from atx_mainframe_dependency_manager import DependencyManager
+import os
+
+# Initialize the dependency manager
+dm = DependencyManager()
+
+# Load dependencies from ATX analysis output
+dm.load_dependencies("/path/to/atx-dependencies.json")
+
+# Set code base path for source code access
+os.environ['ATX_MF_CODE_BASE'] = "/path/to/mainframe/codebase"
+
+# Analyze dependencies
+component_info = dm.get_component_info("PAYROLL")
+dependencies = dm.get_dependencies("PAYROLL")
+dependents = dm.get_dependents("PAYROLL")
+
+# Get recursive analysis
+recursive_deps = dm.get_recursive_dependencies("PAYROLL")
+recursive_dependents = dm.get_recursive_dependents("PAYROLL")
+
+# Find components by type
+cobol_programs = dm.get_components_by_type("COB")
+copybooks = dm.get_components_by_type("CPY")
+
+# Get statistics
+stats = dm.get_statistics()
+print(f"Total components: {stats['total_components']}")
+print(f"Component types: {stats['component_types']}")
+
+# Find orphaned components
+orphans = dm.get_orphaned_components()
+```
+
+#### Advanced Library Usage
+
+```python
+# Add new components programmatically
+dm.add_component("NEWPROG", "COB", "/path/to/NEWPROG.cob")
+
+# Add dependencies
+dm.add_dependency("NEWPROG", "EMPLOYEE", "COPY")
+
+# Save updated dependencies
+dm.save_dependencies("/path/to/updated-dependencies.json")
+
+# Search by file path
+component = dm.find_component_by_path("/cobol/PAYROLL.cob")
+
+# Validate source code access
+validation_results = dm.validate_source_access()
 ```
 
 ## ATX Dependencies JSON Format
