@@ -87,29 +87,78 @@ dependencies = dm.get_dependencies("PAYROLL")
 stats = dm.get_statistics()
 ```
 
-## Sample Prompts
+## Sample Prompts for Mainframe Modernization
 
-Once the MCP server is configured, you can use these prompts for mainframe modernization:
+Once the MCP server is configured, you can use these prompts to guide your mainframe modernization project:
 
-### Migration Planning
-- "Which components have the fewest dependencies and could be migrated first?"
-- "Show me standalone programs that could be extracted as microservices"
-- "Find components that are only used by a single program"
+### 🔍 Discovery & Analysis Phase
 
-### Data Structure Analysis
-- "What are the input files and their copybooks layout for this JCL job?"
-- "Which copybooks define data structures that could become API contracts?"
-- "Show me all the data dependencies for the CUSTOMER-PROCESS program"
+#### 1. Get Overall System Overview
+"Show me the complete mainframe system statistics and component breakdown to understand the modernization scope"
 
-### Risk Assessment
-- "Identify high-risk components with many dependents that need careful migration planning"
-- "Which programs have the most complex dependency chains?"
-- "Find circular dependencies that need refactoring before cloud migration"
+#### 2. Identify Core Business Programs
+"Find all COBOL programs that have the most dependencies and dependents - these are likely our core business logic components"
 
-### Modernization Strategy
-- "Group related components that could form a microservice boundary"
-- "Show me batch JCL jobs that could be converted to serverless functions"
-- "What would be impacted if I modernize the CUSTOMER-MASTER program?"
+#### 3. Analyze Transaction Processing Components
+"Get detailed information about COTRN00C, COTRN01C, and COTRN02C components including their dependencies and source code to understand the transaction processing flow"
+
+#### 4. Discover Account Management Components
+"Show me all components related to account management (COACTUPC, COACTVWC, CBACT*) and their dependency relationships"
+
+### 📊 Dependency Analysis for Modernization Planning
+
+#### 5. Find High-Impact Components
+"Identify components with the highest number of dependents - these should be modernized first as they impact the most other components"
+
+#### 6. Discover Isolated Components
+"Show me all orphaned components that have no dependencies or dependents - these can be modernized independently"
+
+#### 7. Analyze Copybook Dependencies
+"Get all CPY (copybook) components and show which COBOL programs depend on them - this will help plan data structure modernization"
+
+#### 8. Map JCL Job Dependencies
+"Show me all JCL components and their program dependencies to understand batch processing workflows"
+
+### 🏗️ Microservices Architecture Planning
+
+#### 9. Group Related Components for Service Boundaries
+"Analyze the dependency relationships between COBOL programs to identify logical groupings for microservices (e.g., customer management, card management, transaction processing)"
+
+#### 10. Identify Service Interface Points
+"Find components that are called by multiple other components - these are candidates for service interfaces in the modernized architecture"
+
+#### 11. Analyze Data Access Patterns
+"Show me all components that access the same datasets/files to understand data sharing patterns for database design"
+
+### 🔄 Migration Strategy Development
+
+#### 12. Plan Incremental Migration
+"Identify components with the fewest dependencies that can be modernized first in an incremental migration approach"
+
+#### 13. Find Critical Path Components
+"Show me the dependency chain from user interface components (COUSR*, COADM*) to data access components to understand the critical modernization path"
+
+#### 14. Analyze Cross-Component Communication
+"Get detailed information about how CICS programs call each other to design API interfaces for the modernized system"
+
+### 💾 Data Modernization Planning
+
+#### 15. Map Data Structures
+"Read the source code of key copybooks (CVACT01Y, CVCUS01Y, CVTRA05Y) to understand data structures that need to be modernized"
+
+#### 16. Identify File Access Patterns
+"Show me all components that read/write to the same files to plan database table design and data access services"
+
+#### 17. Analyze Data Validation Logic
+"Get the source code of validation-heavy components like COACTUPC to extract business rules for modern validation services"
+
+### 🧪 Testing Strategy Development
+
+#### 18. Identify Test Boundaries
+"Find components that can be tested independently (low coupling) vs. those requiring integration testing (high coupling)"
+
+#### 19. Plan Component Testing Order
+"Show me the dependency hierarchy to plan the order of component testing during modernization"
 
 ## Usage Examples
 
