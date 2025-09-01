@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Selvam"
+  given-names: "Arunkumar"
+  email: "aruninfy123@gmail.com"
+title: "ATX Mainframe Dependency Manager"
+version: 0.1.0
+doi: 10.5281/zenodo.1234567
+date-released: 2024-09-01
+url: "https://github.com/arunkumars-mf/atx-mainframe-dependency-manager"
