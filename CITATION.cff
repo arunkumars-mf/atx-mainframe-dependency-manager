@@ -8,7 +8,7 @@ authors:
     orcid: "https://orcid.org/0009-0006-2050-5569"
     affiliation: "IEEE Member"
 title: "AWS Transform for mainframe (ATX) - Mainframe Dependency Manager"
-version: "0.1.1"
+version: "0.1.2"
 date-released: "2025-09-01"
 url: "https://github.com/arunkumars-mf/atx-mainframe-dependency-manager"
 repository-code: "https://github.com/arunkumars-mf/atx-mainframe-dependency-manager"
