@@ -1,10 +1,10 @@
-# ATX Mainframe Dependency Manager
+# AWS Transform for mainframe (ATX) - Mainframe Dependency Manager
 
-A Model Context Protocol (MCP) server for managing mainframe component dependencies and relationships as part of **AWS Transform (ATX)** initiatives.
+A Model Context Protocol (MCP) server for managing mainframe component dependencies and relationships as part of **[AWS Transform for mainframe (ATX)](https://aws.amazon.com/transform/mainframe/)** initiatives.
 
 ## Overview
 
-This MCP server extends the **AWS Transform (ATX) analysis workflow** by providing advanced dependency analysis capabilities for mainframe applications. It works with the codebase and dependency graph JSON produced by the ATX analysis step to enable deeper insights and impact analysis.
+This MCP server extends the **[AWS Transform for mainframe (ATX)](https://aws.amazon.com/transform/mainframe/) analysis workflow** by providing advanced dependency analysis capabilities for mainframe applications. It works with the codebase and dependency graph JSON produced by the ATX analysis step to enable deeper insights and impact analysis.
 
 ## ATX Integration Workflow
 
@@ -119,7 +119,7 @@ The dependency graph JSON is produced by the ATX analysis step and follows this 
 
 ## AWS Transform Integration
 
-This tool is designed to work seamlessly with AWS Transform (ATX) workflows:
+This tool is designed to work seamlessly with [AWS Transform for mainframe (ATX)](https://aws.amazon.com/transform/mainframe/) workflows:
 
 1. **Run ATX Analysis** on your mainframe codebase
 2. **Use the same codebase** and generated `dependencies.json` 
