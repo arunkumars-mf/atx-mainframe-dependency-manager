@@ -4,6 +4,7 @@
 import os
 import json
 import logging
+from pathlib import Path
 from typing import List, Dict, Optional, Any, Set
 
 # Set up logging
@@ -51,7 +52,7 @@ class DependencyManager:
             dependencies_file: Path to the JSON file containing dependencies
         """
         try:
-            with open(dependencies_file, 'r') as f:
+            with open(dependencies_file, 'r', encoding='utf-8') as f:
                 self.dependencies = json.load(f)
             logger.info(f"Loaded {len(self.dependencies)} components from dependency file")
         except Exception as e:
@@ -199,13 +200,16 @@ class DependencyManager:
         Returns:
             Component name or None if not found
         """
+        # Convert to Path object for better cross-platform handling
+        path_obj = Path(file_path)
+        
         # Handle relative paths by prepending code base path
-        if self.code_base_path and not os.path.isabs(file_path):
-            full_path = os.path.join(self.code_base_path, file_path)
+        if self.code_base_path and not path_obj.is_absolute():
+            full_path = Path(self.code_base_path) / path_obj
         else:
-            full_path = file_path
+            full_path = path_obj
             
-        basename = os.path.basename(full_path)
+        basename = full_path.name
 
         # Try exact name match first
         for name, info in self.dependency_graph.items():
@@ -216,16 +220,18 @@ class DependencyManager:
         for name, info in self.dependency_graph.items():
             component_path = info.get('path', '')
             if component_path:
+                component_path_obj = Path(component_path)
+                
                 # Handle relative paths in component data
-                if self.code_base_path and not os.path.isabs(component_path):
-                    component_full_path = os.path.join(self.code_base_path, component_path)
+                if self.code_base_path and not component_path_obj.is_absolute():
+                    component_full_path = Path(self.code_base_path) / component_path_obj
                 else:
-                    component_full_path = component_path
+                    component_full_path = component_path_obj
                 
                 # Check if paths match or if basename is in component path
-                if (full_path == component_full_path or 
+                if (str(full_path) == str(component_full_path) or 
                     basename in component_path or 
-                    basename in os.path.basename(component_path)):
+                    basename in component_path_obj.name):
                     return name
 
         return None
@@ -316,7 +322,7 @@ class DependencyManager:
             output_file: Path to the output JSON file
         """
         try:
-            with open(output_file, 'w') as f:
+            with open(output_file, 'w', encoding='utf-8') as f:
                 json.dump(self.dependencies, f, indent=2)
             logger.info(f"Saved {len(self.dependencies)} components to {output_file}")
         except Exception as e:

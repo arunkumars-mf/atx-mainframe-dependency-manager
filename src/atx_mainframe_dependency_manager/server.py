@@ -1,5 +1,6 @@
 import os
 import signal
+import sys
 import importlib.metadata
 
 from anyio import create_task_group, open_signal_receiver, run
@@ -44,8 +45,15 @@ async def signal_handler(scope: CancelScope):
     The anyio.open_signal_receiver returns an async generator that yields
     signal numbers whenever a specified signal is received. The async for
     loop waits for signals and processes them as they arrive.
+    
+    Note: SIGTERM is not available on Windows, so we only use SIGINT there.
     """
-    with open_signal_receiver(signal.SIGINT, signal.SIGTERM) as signals:
+    # Windows doesn't support SIGTERM
+    signals_to_handle = [signal.SIGINT]
+    if sys.platform != "win32":
+        signals_to_handle.append(signal.SIGTERM)
+    
+    with open_signal_receiver(*signals_to_handle) as signals:
         async for _ in signals:  # Shutting down regardless of the signal type
             print("Shutting down MCP server...")
             # Force immediate exit since MCP blocks on stdio.
