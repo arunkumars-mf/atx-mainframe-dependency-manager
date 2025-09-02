@@ -1,7 +1,7 @@
 # AWS Transform for mainframe (ATX) - Mainframe Dependency Manager
 
 [![PyPI version](https://img.shields.io/pypi/v/atx-mainframe-dependency-manager.svg)](https://pypi.org/project/atx-mainframe-dependency-manager/)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/atx-mainframe-dependency-manager.svg?label=PyPI%20downloads)](https://pypi.org/project/atx-mainframe-dependency-manager/)
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/atx-mainframe-dependency-manager?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/atx-mainframe-dependency-manager)
 [![Python versions](https://img.shields.io/pypi/pyversions/atx-mainframe-dependency-manager.svg)](https://pypi.org/project/atx-mainframe-dependency-manager/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
