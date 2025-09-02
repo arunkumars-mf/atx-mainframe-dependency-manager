@@ -46,8 +46,12 @@ async def signal_handler(scope: CancelScope):
     signal numbers whenever a specified signal is received. The async for
     loop waits for signals and processes them as they arrive.
     
-    Note: SIGTERM is not available on Windows, so we only use SIGINT there.
+    Note: Signal handling is not supported on Windows, so we skip it there.
     """
+    # Skip signal handling on Windows as it's not supported
+    if sys.platform == "win32":
+        return
+    
     # Windows doesn't support SIGTERM
     signals_to_handle = [signal.SIGINT]
     if sys.platform != "win32":
